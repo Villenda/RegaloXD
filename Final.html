@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Math Game</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #BCE6EB; /* Set the background color to BCE6EB */
+            color: #FCA3CC; /* Set the text color to #FCA3CC */
+        }
+        #question {
+            font-size: 24px;
+        }
+        button {
+            background-color: #FCA3CC; /* Set the button background color to #FCA3CC */
+            color: white; /* Set the button text color to white */
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <h1>A ver si le sabes</h1>
+    <p>Vamos mau tu sabes que yo se que eres muy inteligente te amooo :3</p>
+    
+    <div id="question"></div>
+    <input type="text" id="answer" placeholder="Your answer">
+    <button onclick="checkAnswer()">Submit</button>
+    
+    <div id="result"></div>
+
+    <script>
+        // Define math questions and answers
+        const questions = [
+            { question: "12 * 12", answer: 144 },
+            { question: "77 + 33", answer: 110 },
+            { question: "28 / 14", answer: 2 }
+        ];
+
+        let currentQuestion = 0;
+        let score = 0;
+
+        // Function to display the current question
+        function displayQuestion() {
+            document.getElementById("question").textContent = questions[currentQuestion].question;
+        }
+
+        // Function to check the answer and update the score
+        function checkAnswer() {
+            const userAnswer = parseInt(document.getElementById("answer").value);
+
+            if (userAnswer === questions[currentQuestion].answer) {
+                score++;
+            }
+
+            currentQuestion++;
+
+            if (currentQuestion < questions.length) {
+                displayQuestion();
+                document.getElementById("answer").value = "";
+            } else {
+                // All questions answered
+                document.getElementById("result").innerHTML = `<p>Felicidades asumo que todas estaban bien, sacaste:  ${score} de ${questions.length} bien :3.</p><button onclick="openLocalHTML()">Te amoooo, aqui tu regalo mau :3</button>`;
+                document.getElementById("question").style.display = "none";
+                document.getElementById("answer").style.display = "none";
+                document.querySelector("button").style.display = "none";
+            }
+        }
+
+        // Function to open a local HTML file
+        function openLocalHTML() {
+            window.location.href = "mibb.html"; // Change "example.html" to the desired local file name
+        }
+
+        // Start the game
+        displayQuestion();
+    </script>
+</body>
+</html>
+
